@@ -9,28 +9,28 @@ const App = () => {
 
   const message = go + `'s turn`
 
-  const checkScore = () => {
-    const winLines = [
-      [0,1,2], [3,4,5], [6,7,8],
-      [0,3,6], [1,4,7], [2,5,8],
-      [0,4,8], [2,4,6]
-    ]
-
-    winLines.forEach(arr => {
-      const circleWin = arr.every(cell => cells[cell] === O)
-      const crossWin = arr.every(cell => cells[cell] === X)
-
-      if (circleWin) {
-        setWinMes(O + 'Wins!')
-      }
-
-      if (crossWin) {
-        setWinMes(X + 'Wins!')
-      }
-    })
-  }
-
   useEffect(() => {
+    const checkScore = () => {
+      const winLines = [
+        [0,1,2], [3,4,5], [6,7,8],
+        [0,3,6], [1,4,7], [2,5,8],
+        [0,4,8], [2,4,6]
+      ]
+  
+      winLines.forEach(arr => {
+        const circleWin = arr.every(cell => cells[cell] === O)
+        const crossWin = arr.every(cell => cells[cell] === X)
+  
+        if (circleWin) {
+          setWinMes(O + ' Wins!')
+        }
+  
+        if (crossWin) {
+          setWinMes(X + ' Wins!')
+        }
+      })
+    }
+
     checkScore()
   }, [cells])
 
@@ -45,7 +45,8 @@ const App = () => {
             setCells={setCells}
             go={go}
             setGo={setGo}
-            cells={cells}/>)}
+            cells={cells}
+            winMes={winMes}/>)}
       </div>
       <p>{winMes || message}</p>
     </div>

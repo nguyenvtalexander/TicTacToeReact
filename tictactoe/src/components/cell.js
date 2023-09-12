@@ -1,6 +1,6 @@
 import { X, O } from "../constants"
 
-const Cell = ({ id, cell, setCells, go, setGo, cells }) => {
+const Cell = ({ id, cell, setCells, go, setGo, cells, winMes }) => {
     
     const handleClick = e => {
         const taken = e.target.firstChild.classList.contains(X) ||
@@ -32,7 +32,7 @@ const Cell = ({ id, cell, setCells, go, setGo, cells }) => {
     }
 
     return (
-        <div className='square' id={id} cell={cell} onClick={handleClick}>
+        <div className='square' id={id} cell={cell} onClick={!winMes ? handleClick : undefined}>
             <div className={cell}/>
         </div>
     )
